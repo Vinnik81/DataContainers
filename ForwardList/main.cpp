@@ -1,10 +1,10 @@
-#include<iostream>
+ï»¿#include<iostream>
 using namespace std;
 
 class Element
 {
-	int Data;		//Çíà÷åíèå ýëåìåíòà
-	Element* pNext;	//Àäðåññ ñëåäóþùåãî ýëåìåíòà
+	int Data;		//Ð—Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚Ð°
+	Element* pNext;	//ÐÐ´Ñ€ÐµÑÑ ÑÐ»ÐµÐ´ÑƒÑŽÑ‰ÐµÐ³Ð¾ ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚Ð°
 	static unsigned int count;
 public:
 	Element(int Data, Element* pNext = nullptr) : Data(Data), pNext(pNext)
@@ -54,7 +54,7 @@ public:
 	{
 		if (index > Head->count)
 		{
-			cout << "Error: Âûõîä çà ïðåäåëû ñïèñêà" << endl;
+			cout << "Error: Ð’Ñ‹Ñ…Ð¾Ð´ Ð·Ð° Ð¿Ñ€ÐµÐ´ÐµÐ»Ñ‹ ÑÐ¿Ð¸ÑÐºÐ°" << endl;
 			return;
 		}
 		Element* Temp = Head;
@@ -82,13 +82,13 @@ public:
 	//					Methods:
 	void print()const
 	{
-		Element* Temp = Head;//Temp - ýòî èòåðàòîð
+		Element* Temp = Head;//Temp - ÑÑ‚Ð¾ Ð¸Ñ‚ÐµÑ€Ð°Ñ‚Ð¾Ñ€
 		while (Temp)
 		{
 			cout << Temp << "\t" << Temp->Data << "\t" << Temp->pNext << endl;
 			Temp = Temp->pNext;
 		}
-		cout << "Êîëè÷åñòâî ýëåìåíòîâ ñïèñêà: " << Head->count << endl;
+		cout << "ÐšÐ¾Ð»Ð¸Ñ‡ÐµÑÑ‚Ð²Ð¾ ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚Ð¾Ð² ÑÐ¿Ð¸ÑÐºÐ°: " << Head->count << endl;
 	}
 	
 };
@@ -97,7 +97,7 @@ void main()
 {
 	setlocale(LC_ALL, "");
 	int n;
-	cout << "Ââèäèòå ðàçìåð ñïèñêà:  "; cin >> n;
+	cout << "Ð’Ð²Ð¸Ð´Ð¸Ñ‚Ðµ Ñ€Ð°Ð·Ð¼ÐµÑ€ ÑÐ¿Ð¸ÑÐºÐ°:  "; cin >> n;
 	ForwardList list;
 	for (int i = 0; i < n; i++)
 	{
@@ -108,8 +108,8 @@ void main()
 
 	int index;
 	int value;
-	cout << "Ââåäèòå èíäåêñ äîáàâëåííîãî ýëåìåíòà: "; cin >> index;
-	cout << "Ââåäèòå çíà÷åíèå äîáàâëåííîãî ýëåìåíòà: "; cin >> value;
+	cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð¸Ð½Ð´ÐµÐºÑ Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð½Ð¾Ð³Ð¾ ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚Ð°: "; cin >> index;
+	cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð½Ð¾Ð³Ð¾ ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚Ð°: "; cin >> value;
 	list.insert(index, value);
 	list.print();
 }
