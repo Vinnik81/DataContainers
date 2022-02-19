@@ -21,7 +21,7 @@ public:
 	friend class ForwardList;
 };
 
-unsigned int Element::count = 0; //
+unsigned int Element::count = 0; //Инициализация статической переменной
 
 class ForwardList
 {
@@ -29,7 +29,7 @@ class ForwardList
 public:
 	ForwardList()
 	{
-		Head = nullptr; //
+		Head = nullptr; //Если Голова указывает на 0, то список пуст, т.е. не содежрит элементов
 		cout << "LConstructor:\t" << this << endl;
 	}
 	~ForwardList()
