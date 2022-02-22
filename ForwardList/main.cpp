@@ -32,9 +32,36 @@ public:
 		Head = nullptr; //Если Голова указывает на 0, то список пуст, т.е. не содежрит элементов
 		cout << "LConstructor:\t" << this << endl;
 	}
+	ForwardList(const ForwardList& other) : ForwardList()
+	{
+		for (Element* Temp = other.Head; Temp; Temp = Temp->pNext)push_back(Temp->Data);
+		cout << "LCopyConstructor: " << this << endl;
+	}
+	ForwardList(ForwardList&& other)
+	{
+		this->Head = other.Head;
+		other.Head = nullptr;
+		cout << "LMoveConstructor: " << this << endl;
+	}
 	~ForwardList()
 	{
+		while (Head)pop_front();
 		cout << "LDestructor:\t" << this << endl;
+	}
+	//						Operators:
+	ForwardList& operator=(const ForwardList& other)
+	{
+		while (Head)pop_front();
+		for (Element* Temp = other.Head; Temp; Temp = Temp->pNext)push_back(Temp->Data);
+		cout << "LCopyAssignment: " << this << endl;
+		return *this;
+	}
+	ForwardList& operator=(ForwardList&& other)
+	{
+		while (Head)pop_front();
+		this->Head = other.Head;
+		other.Head = nullptr;
+		cout << "LMoveAssignment: " << this << endl;
 	}
 	//						Adding elements
 	void push_front(int Data)
@@ -55,6 +82,11 @@ public:
 		if (index > Head->count)
 		{
 			cout << "Error: Выход за пределы списка" << endl;
+			return;
+		}
+		if (index == 0)
+		{
+			push_front(Data);
 			return;
 		}
 		Element* Temp = Head;
@@ -78,6 +110,24 @@ public:
 		delete Temp->pNext;
 		Temp->pNext = nullptr;
 	}
+	void erase(int index)
+	{
+		if (index > Head->count)
+		{
+			cout << "Error: Выход за пределы списка" << endl;
+			return;
+		}
+		if (index == 0)
+		{
+			pop_front();
+			return;
+		}
+		Element* Temp = Head;
+		for (int i = 0; i < index - 1; i++)Temp = Temp->pNext;
+		Element* Erased = Temp->pNext;
+		Temp->pNext = Temp->pNext->pNext;
+		delete Erased;
+	}
 
 	//					Methods:
 	void print()const
@@ -96,6 +146,7 @@ public:
 void main()
 {
 	setlocale(LC_ALL, "");
+	cout << "--------------------------------------------------------------------\n";
 	int n;
 	cout << "Ввидите размер списка:  "; cin >> n;
 	ForwardList list;
@@ -105,11 +156,20 @@ void main()
 		list.push_back(rand() % 100);
 	}
 	list.print();
-
+	cout << "\n--------------------------------------------------------------------\n";
 	int index;
 	int value;
 	cout << "Введите индекс добавленного элемента: "; cin >> index;
 	cout << "Введите значение добавленного элемента: "; cin >> value;
 	list.insert(index, value);
 	list.print();
+	cout << "\n--------------------------------------------------------------------\n";
+	cout << "Введите индекс удаляемого элемента: "; cin >> index;
+	list.erase(index);
+	list.print();
+	cout << "\n--------------------------------------------------------------------\n";
+	ForwardList list2;
+	list2 = list;
+	list2.print();
+	cout << "\n--------------------------------------------------------------------\n";
 }
