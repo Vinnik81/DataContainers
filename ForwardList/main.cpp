@@ -89,6 +89,8 @@ public:
 	}
 	ForwardList(const initializer_list<int>& il) : ForwardList()
 	{
+		//begin() - возвращает итератор на начало контейнера
+		//end()   - возвращает итератор на конец контейнера
 		cout << typeid(il.begin()).name() << endl;
 		for (int const* it = il.begin(); it != il.end(); it++)
 		{
@@ -212,14 +214,14 @@ public:
 			cout << "Error: out of range" << endl;
 			return;
 		}
-		//1)
+		//1) Доходим до нужного элемента:
 		Element* Temp = Head;
 		for (int i = 0; i < index - 1; i++)Temp = Temp->pNext;
-		//2)Запиминаем адресс удаляемого элемента
+		//2) Запиминаем адресс удаляемого элемента:
 		Element* Erased = Temp->pNext;
-		//3)
+		//3) Исключаем удаляемый элемент из списка:
 		Temp->pNext = Temp->pNext->pNext;
-		//4)
+		//4) Удаляем элемент из памяти:
 		delete Erased;
 		size--;
 	}
@@ -291,7 +293,9 @@ void main()
 
 #ifdef COPY_METHODS_CHECK
 	ForwardList list = { 3,5,8,13, 21 };
+	list = list;
 	list.print();
+	//ForwardList list2 = list;	//CopyConstructor
 	ForwardList list2;
 	list2 = list; //CopyAssignment
 	list2.print();
