@@ -128,6 +128,15 @@ public:
 		Temp->pNext = Temp->pNext->pNext;
 		delete Erased;
 	}
+	void uniqe()
+	{
+		Element* Temp = Head;
+		while (Temp->pNext == Temp->pNext)Temp = Temp->pNext;
+		Element* Erased = Temp->pNext;
+		Temp->pNext = Temp->pNext->pNext;
+		delete Erased;
+		size--;
+	}
 
 	//					Methods:
 	void print()const
