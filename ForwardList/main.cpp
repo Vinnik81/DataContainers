@@ -135,7 +135,7 @@ public:
 		Element* Erased = Temp->pNext;
 		Temp->pNext = Temp->pNext->pNext;
 		delete Erased;
-		size--;
+	
 	}
 
 	//					Methods:
