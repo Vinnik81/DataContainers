@@ -96,7 +96,7 @@ public:
 		{
 			push_back(*it);
 		}
-		cout << "IlConstructor: " << this << endl;
+		cout << "IlConstructor:\t" << this << endl;
 		//int* pa; // указатель
 		//const int* cpa; //константный указатель
 		//int const* pca; // указатель на константу
