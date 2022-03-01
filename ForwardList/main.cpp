@@ -71,7 +71,6 @@ public:
 	{
 		return Temp->Data;
 	}
-
 };
 
 class ForwardList
@@ -120,6 +119,14 @@ public:
 	{
 		while (Head)pop_front();
 		cout << "LDestructor:\t" << this << endl;
+	}
+	Iterator begin()
+	{
+		return Head;	//начало диапазона
+	}
+	Iterator end()		//конец диапазона
+	{
+		return nullptr;
 	}
 	//						Operators:
 	ForwardList& operator=(const ForwardList& other)
@@ -225,6 +232,26 @@ public:
 		delete Erased;
 		size--;
 	}
+	void uniqe()
+	{
+		for (int i = 0; i < size; i++)
+		{
+			for (int j = i + 1; j < size; j++)
+			{
+				if ((*this)[i] == (*this)[j])erase(j);
+			}
+		}
+	}
+	void reverse()
+	{
+		int value;
+		for (int i = 0; i < size - i ; i++)
+		{
+			value = (*this)[i];
+			(*this)[i] = (*this)[size - 1 - i];
+			(*this)[size - 1 - i] = value;
+		}
+	}
 
 	//					Methods:
 	void print()const
@@ -235,8 +262,8 @@ public:
 		//	cout << Temp << "\t" << Temp->Data << "\t" << Temp->pNext << endl;
 		//	Temp = Temp->pNext;
 		//}
-		for (Element* Temp = Head; Temp; Temp++)
-		//for (Element* Temp = Head; Temp; Temp = Temp->pNext)
+		//for (Element* Temp = Head; Temp; Temp++)
+		for (Element* Temp = Head; Temp; Temp = Temp->pNext)
 			cout << Temp << "\t" << Temp->Data << "\t" << Temp->pNext << endl;
 		cout << "Количество элементов списка: " << size << endl;
 		cout << "Общее количество элементов списка: " << Head-> count << endl;
@@ -257,6 +284,7 @@ ForwardList operator+(const ForwardList& left, const ForwardList& right)
 //#define BASE_CHECK
 //#define COPY_METHODS_CHECK
 //#define MOVE_METHODS_CHECK
+//#define ITERATOR_METHODS_CHECK
 
 void main()
 {
@@ -318,10 +346,42 @@ void main()
 	cout << endl;
 #endif // MOVE_METHODS_CHECK
 
+#ifdef ITERATOR_METHODS_CHECK
 	ForwardList list = { 3,5,8,13,21 };
 	for (Iterator it = list.getHead(); it != nullptr; ++it)
 	{
 		cout << *it << "\t";
 	}
 	cout << endl;
+#endif // ITERATOR_METHODS_CHECK
+
+	cout << "\n-------------------------------------------------------------\n";
+	ForwardList list = { 3,5,3,8,12,8 };
+	for (int i = 0; i < list.get_size(); ++i)
+	{
+		cout << list[i] << "\t";
+	}
+	list.uniqe();
+	for (int i = 0; i < list.get_size(); ++i)
+	{
+		cout << list[i] << "\t";
+	}
+	cout << "\n-------------------------------------------------------------\n";
+	ForwardList list2 = { 3,5,8,13,21 };
+	for (int i = 0; i < list2.get_size(); ++i)
+	{
+		cout << list2[i] << "\t";
+	}
+	cout << endl;
+	list2.reverse();
+	for (int i = 0; i < list2.get_size(); ++i)
+	{
+		cout << list2[i] << "\t";
+	}
+	cout << "\n-------------------------------------------------------------\n";
+	for (int i : list2)
+	{
+		cout << i << "\t";
+	}
+
 }
