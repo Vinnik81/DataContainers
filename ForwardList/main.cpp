@@ -124,9 +124,9 @@ public:
 	{
 		return Head;	//начало диапазона
 	}
-	Iterator end()		//конец диапазона
+	Iterator end()		
 	{
-		return nullptr;
+		return nullptr;	//конец диапазона
 	}
 	//						Operators:
 	ForwardList& operator=(const ForwardList& other)
