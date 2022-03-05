@@ -4,6 +4,8 @@ using std::cout;
 using std::cin;
 using std::endl;
 
+#define tab "\t"
+
 class ForwardList;
 
 class Element
@@ -81,6 +83,14 @@ class ForwardList
 public:
 	Element* getHead()const { return Head; }
 	unsigned int get_size()const { return size; }
+	Iterator begin()
+	{
+		return Head;
+	}
+	Iterator end()
+	{
+		return nullptr;
+	}
 	ForwardList()
 	{
 		Head = nullptr; //Если Голова указывает на 0, то список пуст, т.е. не содежрит элементов
@@ -225,6 +235,36 @@ public:
 		delete Erased;
 		size--;
 	}
+	void unique()
+	{
+		for (Element* Temp = Head; Temp->pNext; Temp = Temp->pNext)
+		{
+			for (Element* Temp2 = Temp; Temp2->pNext;Temp2 = Temp2->pNext)
+			{
+				if (Temp == Temp2)continue;
+				if (Temp->Data == Temp2->pNext->Data)
+				{
+					Element* Erased = Temp2->pNext;
+					Temp2->pNext = Temp2->pNext->pNext;
+					delete Erased;
+					size--;
+					//Temp2 = Temp;
+				}
+			}
+
+		}
+	}
+	void reverse()
+	{
+		ForwardList revers_list;
+		while (Head)
+		{
+			revers_list.push_front(Head->Data);
+			pop_front();
+		}
+		Head = revers_list.Head;
+		revers_list.Head = nullptr;
+	}
 
 	//					Methods:
 	void print()const
@@ -235,8 +275,8 @@ public:
 		//	cout << Temp << "\t" << Temp->Data << "\t" << Temp->pNext << endl;
 		//	Temp = Temp->pNext;
 		//}
-		for (Element* Temp = Head; Temp; Temp++)
-		//for (Element* Temp = Head; Temp; Temp = Temp->pNext)
+		//for (Element* Temp = Head; Temp; Temp++)
+		for (Element* Temp = Head; Temp; Temp = Temp->pNext)
 			cout << Temp << "\t" << Temp->Data << "\t" << Temp->pNext << endl;
 		cout << "Количество элементов списка: " << size << endl;
 		cout << "Общее количество элементов списка: " << Head-> count << endl;
@@ -257,6 +297,9 @@ ForwardList operator+(const ForwardList& left, const ForwardList& right)
 //#define BASE_CHECK
 //#define COPY_METHODS_CHECK
 //#define MOVE_METHODS_CHECK
+//#define REVERSE_CHECK
+//#define UNIQUE_CHECK
+//#define RAGE_BASE_FOR_ARRAY
 
 void main()
 {
@@ -318,10 +361,52 @@ void main()
 	cout << endl;
 #endif // MOVE_METHODS_CHECK
 
+#ifdef REVERSE_CHECK
+	/*ForwardList list = { 3,5,8,13,21 };
+for (Iterator it = list.getHead(); it != nullptr; ++it)
+{
+	cout << *it << "\t";
+}
+cout << endl;*/
 	ForwardList list = { 3,5,8,13,21 };
-	for (Iterator it = list.getHead(); it != nullptr; ++it)
+	list.print();
+	list.reverse();
+	list.print();
+#endif // REVERSE_CHECK
+
+#ifdef UNIQUE_CHECK
+	int n;
+	cout << "Ввидите размер списка: "; cin >> n;
+	ForwardList list;
+	for (int i = 0; i < n; i++)
 	{
-		cout << *it << "\t";
+		list.push_back((rand() % 10));
+	}
+	list.print();
+	list.unique();
+	list.print();
+#endif // UNIQUE_CHECK
+
+#ifdef RAGE_BASE_FOR_ARRAY
+	int arr[] = { 3,5,8,13,21 };
+	for (int i = 0; i < sizeof(arr) / sizeof(int); i++)
+	{
+		cout << arr[i] << tab;
+	}
+	cout << endl;
+
+	//rage-base for:
+	for (int i : arr)
+	{
+		cout << i << tab;
+	}
+	cout << endl;
+#endif // RAGE_BASE_FOR_ARRAY
+
+	ForwardList list = { 3,5,8,13,21 };
+	for (int i : list)
+	{
+		cout << i << tab;
 	}
 	cout << endl;
 }
