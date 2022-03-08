@@ -24,6 +24,57 @@ class List
 	}*Head, * Tail;
 	size_t size;
 public:
+	class Iterator
+	{
+		Element* Temp;
+	public:
+		Iterator(Element* Temp = nullptr) : Temp(Temp)
+		{
+			cout << "ItConstructor:\t" << this << endl;
+		}
+		~Iterator()
+		{
+			cout << "ItDestructor:\t" << this << endl;
+		}
+		Iterator& operator++()
+		{
+			Temp = Temp->pNext;
+			return *this;
+		}
+		Iterator& operator++(int)
+		{
+			Iterator old = *this;
+			Temp = Temp->pNext;
+			return old;
+		}
+		bool operator==(const Iterator& other)
+		{
+			return this->Temp = other.Temp;
+		}
+		bool operator!=(const Iterator& other)
+		{
+			return this->Temp != other.Temp;
+		}
+		const int& operator*()const
+		{
+			return Temp->Data;
+		}
+		int& operator*()
+		{
+			return Temp->Data;
+		}
+	};
+	
+	Iterator begin()
+	{
+		return Head;
+	}
+	Iterator end()
+	{
+		return nullptr;
+	}
+	
+public:
 	List()
 	{
 		Head = Tail = nullptr;
@@ -216,7 +267,7 @@ void main()
 #endif // COPY_METHODS_CHECK
 
 #ifdef HOME_WORK
-	List list = { 3,5,38,313,21 };
+	List list = { 3,5,8,13,21 };
 	for (int i : list)
 	{
 		cout << i << tab;
