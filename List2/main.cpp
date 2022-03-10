@@ -21,6 +21,7 @@ class List
 			cout << "EDestructor:\t" << this << endl;
 		}
 		friend class List;
+		friend class Iterator;
 	}*Head, * Tail;
 	size_t size;
 public:
@@ -47,11 +48,11 @@ public:
 			Temp = Temp->pNext;
 			return old;
 		}
-		bool operator==(const Iterator& other)
+		bool operator==(const Iterator& other)const
 		{
-			return this->Temp = other.Temp;
+			return this->Temp == other.Temp;
 		}
-		bool operator!=(const Iterator& other)
+		bool operator!=(const Iterator& other)const
 		{
 			return this->Temp != other.Temp;
 		}

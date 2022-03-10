@@ -241,7 +241,7 @@ public:
 		{
 			for (Element* Temp2 = Temp; Temp2->pNext;Temp2 = Temp2->pNext)
 			{
-				//if (Temp == Temp2)continue;
+				if (Temp == Temp2)continue;
 				if (Temp->Data == Temp2->pNext->Data)
 				{
 					Element* Erased = Temp2->pNext;
@@ -250,8 +250,8 @@ public:
 					size--;
 					Temp2 = Temp;
 				}
+				
 			}
-
 		}
 	}
 	void reverse()
