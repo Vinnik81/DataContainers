@@ -1,16 +1,16 @@
-#include<iostream>
+ï»¿#include<iostream>
 using namespace std;
 
 void elevator(int floor)
 {
 	if (floor == 0)
 	{
-		cout << "Âû â ïîäâàëå" << endl;
+		cout << "Ð’Ñ‹ Ð² Ð¿Ð¾Ð´Ð²Ð°Ð»Ðµ" << endl;
 		return;
 	}
-	cout << "Âû íà " << floor << " ýòàæå" << endl;
+	cout << "Ð’Ñ‹ Ð½Ð° " << floor << " ÑÑ‚Ð°Ð¶Ðµ" << endl;
 	elevator(floor - 1);
-	cout << "Âû íà " << floor << " ýòàæå" << endl;
+	cout << "Ð’Ñ‹ Ð½Ð° " << floor << " ÑÑ‚Ð°Ð¶Ðµ" << endl;
 }
 
 int factorial(int n)
@@ -39,22 +39,22 @@ void main()
 	setlocale(LC_ALL, "");
 #ifdef ELEVATOR
 	int floor;
-	cout << "Ââèäèòå íîìåð ýòàæà:"; cin >> floor;
+	cout << "Ð’Ð²Ð¸Ð´Ð¸Ñ‚Ðµ Ð½Ð¾Ð¼ÐµÑ€ ÑÑ‚Ð°Ð¶Ð°:"; cin >> floor;
 	elevator(floor);
 #endif // ELEVATOR
 
 #ifdef FACTORIAL
 	int n;
-	cout << "Ââåäèòå ÷èñëî:"; cin >> n;
-	cout << "Ôàêòîðèàë ÷èñëà " << n << "!" << " = " << factorial(n) << endl;
+	cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ñ‡Ð¸ÑÐ»Ð¾:"; cin >> n;
+	cout << "Ð¤Ð°ÐºÑ‚Ð¾Ñ€Ð¸Ð°Ð» Ñ‡Ð¸ÑÐ»Ð° " << n << "!" << " = " << factorial(n) << endl;
 #endif // FACTORIAL
 
 #ifdef POWER
 	double a;
 	int n;
-	cout << "Ââåäèòå ÷èñëî:"; cin >> a;
-	cout << "Ââåäèòå ñòåïåíü:"; cin >> n;
-	cout << "×èñëî " << a << " ^ " << n << " = " << power(a, n) << endl;
+	cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ñ‡Ð¸ÑÐ»Ð¾:"; cin >> a;
+	cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ ÑÑ‚ÐµÐ¿ÐµÐ½ÑŒ:"; cin >> n;
+	cout << "Ð§Ð¸ÑÐ»Ð¾ " << a << " ^ " << n << " = " << power(a, n) << endl;
 #endif // POWER
 
 }
