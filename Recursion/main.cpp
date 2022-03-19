@@ -15,19 +15,21 @@ void elevator(int floor)
 
 int factorial(int n)
 {
-	if (n < 0)
+	/*if (n < 0)
 	{
 		cout << "Error!!!" << endl;
 		return 0;
 	}
 	if (n == 0) return 1;
-	else return n * factorial(n - 1);
+	else return n * factorial(n - 1);*/
+	return (n == 0) ? 1 : n * factorial(n - 1);
 }
 double power(double a, int n)
 {
-	if (n < 0) return power(1 / a, -n);
+	/*if (n < 0) return power(1 / a, -n);
 	if (n == 0) return 1;
-	else return a * power(a, n - 1);
+	else return a * power(a, n - 1);*/
+	return n == 0 ? 1 : n > 0 ? a * power(a, n - 1) : power(1 / a, -n);
 }
 
 //#define ELEVATOR
@@ -46,6 +48,8 @@ void main()
 #ifdef FACTORIAL
 	int n;
 	cout << "Введите число:"; cin >> n;
+	//Здесь main() - вызывающая функция(тот кто вызывает);
+	// factorial(n) - вызываемая функция(кого вызывают);
 	cout << "Факториал числа " << n << "!" << " = " << factorial(n) << endl;
 #endif // FACTORIAL
 
