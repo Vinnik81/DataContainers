@@ -1,4 +1,4 @@
-#include<iostream>
+п»ї#include<iostream>
 using namespace std;
 
 class Tree
@@ -21,8 +21,8 @@ protected:
 		}
 		friend class Tree;
 		friend class UniqueTree;
-	}*Root;	//корень дерева (указатель на корневой элемент)
-	// Element* Root; можно так
+	}*Root;	//РєРѕСЂРµРЅСЊ РґРµСЂРµРІР° (СѓРєР°Р·Р°С‚РµР»СЊ РЅР° РєРѕСЂРЅРµРІРѕР№ СЌР»РµРјРµРЅС‚)
+	// Element* Root; РјРѕР¶РЅРѕ С‚Р°Рє
 public:
 	Element* getRoot()const
 	{
@@ -157,7 +157,7 @@ void main()
 {
 	setlocale(LC_ALL, "");
 	int n;
-	cout << "Ввeдите размер дерева: "; cin >> n;
+	cout << "Р’РІeРґРёС‚Рµ СЂР°Р·РјРµСЂ РґРµСЂРµРІР°: "; cin >> n;
 	Tree tree;
 	for (int i = 0; i < n; i++)
 	{
@@ -165,14 +165,14 @@ void main()
 	}
 	tree.print();
 	/*int value;
-	cout << "\nВведите добовляемое значение: "; cin >> value;
+	cout << "\nР’РІРµРґРёС‚Рµ РґРѕР±РѕРІР»СЏРµРјРѕРµ Р·РЅР°С‡РµРЅРёРµ: "; cin >> value;
 	tree.insert(value, tree.getRoot());
 	tree.print(tree.getRoot());*/
-	cout << "\nМинимальное значение в дереве: " << tree.minValue() << endl;
-	cout << "Максимальное значение в дереве: " << tree.maxValue() << endl;
-	cout << "Количество элементов в дереве: " << tree.count() << endl;
-	cout << "Сумма элементов дерева: " << tree.sum() << endl;
-	cout << "Среднее арифмитическое элементов дерева: " << tree.avg() << endl;
+	cout << "\nРњРёРЅРёРјР°Р»СЊРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РІ РґРµСЂРµРІРµ: " << tree.minValue() << endl;
+	cout << "РњР°РєСЃРёРјР°Р»СЊРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РІ РґРµСЂРµРІРµ: " << tree.maxValue() << endl;
+	cout << "РљРѕР»РёС‡РµСЃС‚РІРѕ СЌР»РµРјРµРЅС‚РѕРІ РІ РґРµСЂРµРІРµ: " << tree.count() << endl;
+	cout << "РЎСѓРјРјР° СЌР»РµРјРµРЅС‚РѕРІ РґРµСЂРµРІР°: " << tree.sum() << endl;
+	cout << "РЎСЂРµРґРЅРµРµ Р°СЂРёС„РјРёС‚РёС‡РµСЃРєРѕРµ СЌР»РµРјРµРЅС‚РѕРІ РґРµСЂРµРІР°: " << tree.avg() << endl;
 
 	UniqueTree unique_tree;
 	for (int i = 0; i < n; i++)
@@ -181,10 +181,10 @@ void main()
 	}
 	unique_tree.print();
 	/*int value;
-	cout << "\nВведите добовляемое значение: "; cin >> value;
+	cout << "\nР’РІРµРґРёС‚Рµ РґРѕР±РѕРІР»СЏРµРјРѕРµ Р·РЅР°С‡РµРЅРёРµ: "; cin >> value;
 	tree.insert(value, tree.getRoot());
 	tree.print(tree.getRoot());*/
-	cout << "\nМинимальное значение в дереве: " << unique_tree.minValue() << endl;
-	cout << "Максимальное значение в дереве: " << unique_tree.maxValue() << endl;
-	cout << "Количество элементов в дереве: " << unique_tree.count() << endl;
+	cout << "\nРњРёРЅРёРјР°Р»СЊРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РІ РґРµСЂРµРІРµ: " << unique_tree.minValue() << endl;
+	cout << "РњР°РєСЃРёРјР°Р»СЊРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РІ РґРµСЂРµРІРµ: " << unique_tree.maxValue() << endl;
+	cout << "РљРѕР»РёС‡РµСЃС‚РІРѕ СЌР»РµРјРµРЅС‚РѕРІ РІ РґРµСЂРµРІРµ: " << unique_tree.count() << endl;
 }
