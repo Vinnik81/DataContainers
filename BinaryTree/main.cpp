@@ -32,8 +32,21 @@ public:
 	{
 		cout << "TConstructor:\t" << this << endl;
 	}
+	Tree(const std::initializer_list<int>& il) :Tree()
+	{
+		for (int const* it = il.begin(); it != il.end(); it++)
+		{
+			insert(*it, Root);
+		}
+	}
+	Tree(const Tree& other) : Tree()
+	{
+		copy(other.Root);
+		cout << "CopyConstructor:\t" << this << endl;
+	}
 	~Tree()
 	{
+		clear();
 		cout << "TDestructor:\t" << this << endl;
 	}
 
@@ -63,6 +76,16 @@ public:
 	double avg()const
 	{
 		return (double)sum(Root) / count(Root);
+	}
+
+	void clear()
+	{
+		clear(Root);
+	}
+
+	void erase(int Data)
+	{
+		erase(Data, Root);
 	}
 
 	void print()const
@@ -120,6 +143,50 @@ private:
 		return Root == nullptr ? 0 : sum(Root->pLeft) + sum(Root->pRight) + Root->Data;
 	}
 
+	void clear(Element* Root)
+	{
+		if (Root == nullptr)return;
+		clear(Root->pLeft);
+		clear(Root->pRight);
+		delete Root;
+	}
+
+	void erase(int Data, Element*& Root)
+	{
+		if (Root == nullptr)return;
+		erase(Data, Root->pLeft);
+		erase(Data, Root->pRight);
+		if (Data == Root->Data)
+		{
+			if (Root->pLeft == Root->pRight)
+			{
+				delete Root;
+				Root = nullptr;
+			}
+			else
+			{
+				if (count(Root->pLeft) > count(Root->pRight))
+				{
+					Root->Data = maxValue(Root->pLeft);
+					erase(maxValue(Root->pLeft), Root->pLeft);
+				}
+				else
+				{
+					Root->Data = minValue(Root->pRight);
+					erase(minValue(Root->pRight), Root->pRight);
+				}
+			}
+		}
+	}
+
+	void copy(Element* Root)
+	{
+		if (Root == nullptr)return;
+		insert(Root->Data, this->Root);
+		copy(Root->pLeft);
+		copy(Root->pRight);
+	}
+
 	void print(Element* Root)const
 	{
 		if (Root == nullptr)return;
@@ -173,6 +240,15 @@ void main()
 	cout << "Количество элементов в дереве: " << tree.count() << endl;
 	cout << "Сумма элементов дерева: " << tree.sum() << endl;
 	cout << "Среднее арифмитическое элементов дерева: " << tree.avg() << endl;
+	int value;
+	cout << "Введите значение удаляемого элемента дерева: "; cin >> value;
+	tree.erase(value);
+	tree.print();
+	cout << "\n----------------------------------------------------------------\n";
+	Tree tree2 = { 50, 25, 75, 16, 32, 64, 80 };
+	tree2.print();
+	Tree tree3 = tree2;
+	tree3.print();
 
 	UniqueTree unique_tree;
 	for (int i = 0; i < n; i++)
